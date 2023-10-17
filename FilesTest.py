@@ -39,7 +39,7 @@ def deal_excel(filename):
     # 合并单元格
     for merge_range in merge_ranges:
         min_row, max_row = merge_range
-        ws.merge_cells(start_row=min_row, start_column=16, end_row=max_row, end_column=16)  # '合计'列是第7列
+        ws.merge_cells(start_row=min_row, start_column=16, end_row=max_row, end_column=16)  # '合计'列是第16列
     # 保存结果为xlsx文件
     okFileName = filename.replace('.xlsx', '_完成流向.xlsx')
     wb.save(okFileName)
