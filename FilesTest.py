@@ -2,6 +2,7 @@ from pathlib import Path
 import pandas as pd
 from openpyxl import Workbook
 from openpyxl.utils.dataframe import dataframe_to_rows
+import os
 
 
 # 获取指定目录下的xlsx文件
@@ -13,9 +14,9 @@ def get_all_excel(file_dir, recursive=False):
     return [str(p.resolve()) for p in file_dir.glob(pattern)]
 
 
-#处理excel文件
+# 处理excel文件
 def deal_excel(filename):
-    df = pd.read_excel(filename,header=1)
+    df = pd.read_excel(filename, header=1)
     print(df)
     # 使用groupby和sum进行聚合，并使用transform广播总和值
     df_group = df.groupby(['品名', '规格'])
@@ -43,6 +44,9 @@ def deal_excel(filename):
     okFileName = filename.replace('.xlsx', '_完成流向.xlsx')
     wb.save(okFileName)
 
-excelArray = get_all_excel('d:/3/')
+
+path = (os.getcwd() + '\\').replace('\\', '/')
+excelArray = get_all_excel(path)
+print(excelArray)
 for excelItem in excelArray:
     deal_excel(excelItem)
